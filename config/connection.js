@@ -4,11 +4,11 @@ var mysql = require("mysql");
 
 class Database {
   constructor(config) {
-    this.connection = mysql.createConnection(config);
+    this.ORMconnection = mysql.createConnection(config);
   }
   query(sql, args = []) {
     return new Promise((resolve, reject) => {
-      this.connection.query(sql, args, (err, rows) => {
+      this.ORMconnection.query(sql, args, (err, rows) => {
         if (err) 
           return reject(err);
 
@@ -18,7 +18,7 @@ class Database {
   }
   close() {
     return new Promise((resolve, reject) => {
-      this.connection.end(err => {
+      this.ORMconnectionn.end(err => {
         if (err) 
           return reject(err);
 
@@ -29,11 +29,11 @@ class Database {
 }
 
 const ORMconnection = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
-  host: "localhost",
+  host: "r1bsyfx4gbowdsis.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
   port: 3306,
   user: "awnd1y1gogl85lf7",
   password: "mdhigivzpj0y9dss",
-  database: "burgers_db"
+  database: "kyvcibm6naj4vzz8"
 });
 
 
