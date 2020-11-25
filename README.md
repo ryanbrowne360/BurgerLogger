@@ -8,7 +8,7 @@ Installation:
 
 You simply need a browser that supports javascript. Visit the deployed heroku link in your browswer. Alternatively you can clone this repository, and run from your local computer. You have to have Node.js installed. Then in the directory of this applications main folder, execute the command "node server.js". From there, go to the localhost:PORT in your browser. This can be done both on or offline as long as you can connect to the sql database.
 
-[Link to Application](https://github.com/ryanbrowne360/BurgerLogger.git)
+[Link to Application Hosted On Heroku](https://cryptic-sierra-23631.herokuapp.com/)
 
 Usage:
 
