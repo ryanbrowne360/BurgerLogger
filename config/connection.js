@@ -1,56 +1,29 @@
 // Set up MySQL connection.
 var mysql = require("mysql");
 
-class Database {
-  constructor(config) {
-    this.connection = mysql.createConnection(config);
-  }
-  query(sql, args = []) {
-    return new Promise((resolve, reject) => {
-      this.connection.query(sql, args, (err, rows) => {
-        if (err) 
-          return reject(err);
-        
-        resolve(rows);
-      });
-    });
-  }
-  close() {
-    return new Promise((resolve, reject) => {
-      this.connection.end(err => {
-        if (err) 
-          return reject(err);
-        
-        resolve();
-      });
-    });
-  }
+if (process.env.JAWSDB_URL) {
+  connect = mysql.createConnection(process.env.JAWSDB_URL)
+} else {
+  connect = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "1234",
+    database: "burgers_db"
+  });
 }
 
-var connect = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "1234",
-  database: "burgers_db"
+
+
+connect.connect(function (err) {
+  if (err) {
+    console.error("errir connecting: " + err.stack);
+    return;
+  }
+  console.log("connected as id" + connect.threadId);
 });
 
-module.exports = connect;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var connection = mysql.createConnection({
+// var connect = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
 //   host: "localhost",
 //   port: 3306,
 //   user: "root",
@@ -58,14 +31,41 @@ module.exports = connect;
 //   database: "burgers_db"
 // });
 
-// // Make connection.
-// connection.connect(function(err) {
-//   if (err) {
-//     console.error("error connecting: " + err.stack);
-//     return;
-//   }
-//   console.log("connected as id " + connection.threadId);
-// });
+module.exports = connect;
 
-// // Export connection for our ORM to use.
-// module.exports = connection;
+
+
+
+// class Database {
+//   constructor(config) {
+//     this.connection = mysql.createConnection(config);
+//   }
+//   query(sql, args = []) {
+//     return new Promise((resolve, reject) => {
+//       this.connection.query(sql, args, (err, rows) => {
+//         if (err) 
+//           return reject(err);
+
+//         resolve(rows);
+//       });
+//     });
+//   }
+//   close() {
+//     return new Promise((resolve, reject) => {
+//       this.connection.end(err => {
+//         if (err) 
+//           return reject(err);
+
+//         resolve();
+//       });
+//     });
+//   }
+// }
+
+
+
+
+
+
+
+
