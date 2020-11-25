@@ -27,7 +27,7 @@ class Database {
   }
 }
 
-const connect = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
+var connect = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
   host: "localhost",
   port: 3306,
   user: "root",
