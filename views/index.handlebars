@@ -1,38 +1,29 @@
-<h1>Cats!</h1>
-
-<h2>Cats that are not sleepy!</h2>
-
-<ul>
-  {{#each cats}}
-    {{#unless sleepy}}
-      {{> cats/cat-block sleep=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Cats that are sleepy!</h2>
-
-<ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Cat</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
-  </div>
-
-  <div class="form-group">
-    <label for="sleepy">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
-  </div>
-
-  <button type="submit">Add Cat</button>
-</form>
+<!-- display burger info from db -->
+<div class="row mb-3">
+  <!-- left side -->
+  <section class="col-md-6 devour-it">
+    {{#each burgers}}
+      {{#unless devoured}}
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" value="{{id}}. {{burger_name}}" readonly>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary edb-theme font-weight-bold" type="button" data-id="{{id}}">Devour It!</button>
+          </div>
+        </div>
+      {{/unless}}
+    {{/each}}
+  </section>
+  <!-- right side -->
+  <section class="col-md-6 devoured">
+    {{#each burgers}}
+      {{#if devoured}}
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" value="{{id}}. {{burger_name}}" disabled>
+          <div class="input-group-append">
+            <span class="input-group-text edb-theme font-weight-bold">Devoured!</span>
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
+  </section>
+</div>

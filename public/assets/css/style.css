@@ -1,19 +1,14 @@
-li {
-  padding: 5px;
-  margin: 5px;
-  background: #faebd7;
+
+body {
+  background-color: teal;
 }
 
-.label {
-  font-weight: bold;
+
+
+.edb-theme {
+  color: #663300;
 }
 
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
-
-.form-group {
-  margin-bottom: 5px;
+.devoured span {
+  background-color: transparent;
 }
