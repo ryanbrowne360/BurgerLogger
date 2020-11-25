@@ -1,10 +1,10 @@
-// Set up MySQL connection.
+// Set up MySQL ORMconnectionion.
 var mysql = require("mysql");
 
 if (process.env.JAWSDB_URL) {
-  connect = mysql.createConnection(process.env.JAWSDB_URL)
+  ORMconnection = mysql.createORMconnectionion(process.env.JAWSDB_URL)
 } else {
-  connect = mysql.createConnection({
+  ORMconnection = mysql.createORMconnectionion({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -13,17 +13,20 @@ if (process.env.JAWSDB_URL) {
   });
 }
 
+ORMconnection.connect();
 
+module.exports = ORMconnection;
 
-connect.connect(function (err) {
-  if (err) {
-    console.error("errir connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id" + connect.threadId);
-});
+// ORMconnection.connect(function (err) {
+  //   if (err) {
+  //     console.error("errir ORMconnectioning: " + err.stack);
+  //     return;
+  //   }
+  //   console.log("ORMconnectioned as id" + ORMconnection.threadId);
+  // });
+  
 
-// var connect = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
+// var ORMconnection = new Database(process.env.JAWSDB_URL ? process.env.JAWSDB_URL : {
 //   host: "localhost",
 //   port: 3306,
 //   user: "root",
@@ -31,18 +34,14 @@ connect.connect(function (err) {
 //   database: "burgers_db"
 // });
 
-module.exports = connect;
-
-
-
 
 // class Database {
 //   constructor(config) {
-//     this.connection = mysql.createConnection(config);
+//     this.ORMconnectionion = mysql.createORMconnectionion(config);
 //   }
 //   query(sql, args = []) {
 //     return new Promise((resolve, reject) => {
-//       this.connection.query(sql, args, (err, rows) => {
+//       this.ORMconnectionion.query(sql, args, (err, rows) => {
 //         if (err) 
 //           return reject(err);
 
@@ -52,7 +51,7 @@ module.exports = connect;
 //   }
 //   close() {
 //     return new Promise((resolve, reject) => {
-//       this.connection.end(err => {
+//       this.ORMconnectionion.end(err => {
 //         if (err) 
 //           return reject(err);
 
